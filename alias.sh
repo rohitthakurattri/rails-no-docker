@@ -1,0 +1,6 @@
+alias rc='docker compose exec web bin/rails c'
+alias rs='docker compose exec web bin/rails server -b 0.0.0.0 -p 3000'
+alias migrate='docker compose exec web bin/rails db:migrate'
+alias routes='docker compose exec web bin/rails routes'
+alias logs='docker compose logs -f web'
+alias ps='docker compose ps'

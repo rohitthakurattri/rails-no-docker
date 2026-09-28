@@ -1,0 +1,33 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV.fetch("DATABASE_USERNAME", "rails") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD", "YourStrongPassword") %>
+  host: <%= ENV.fetch("DATABASE_HOST", "db") %>
+  port: 3306
+
+development:
+  <<: *default
+  database: rails_no_docker_development
+
+test:
+  <<: *default
+  database: rails_no_docker_development
+
+production:
+  primary: &primary_production
+    <<: *default
+    database: rails_no_docker_development
+
+  cache:
+    <<: *primary_production
+    database: rails_no_docker_development
+
+  queue:
+    <<: *primary_production
+    database: rails_no_docker_development
+
+  cable:
+    <<: *primary_production
+    database: rails_no_docker_development
